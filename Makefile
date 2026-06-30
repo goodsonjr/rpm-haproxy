@@ -53,9 +53,7 @@ download-upstream:
 build_lua:
 	rpm -q readline-devel || $(SUDO) yum install -y readline-devel
 	curl -o ./SOURCES/lua-${LUA_VERSION}.tar.gz https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz
-	cd ./SOURCES
-	tar xzf lua-${LUA_VERSION}.tar.gz
-	cd lua-${LUA_VERSION}
+	tar xzf ./SOURCES/lua-${LUA_VERSION}.tar.gz
 	$(MAKE) -C lua-${LUA_VERSION} clean
 	$(SUDO) $(MAKE) -C lua-${LUA_VERSION} MYCFLAGS=-fPIC linux test  # MYCFLAGS=-fPIC is required during linux ld
 	$(SUDO) $(MAKE) -C lua-${LUA_VERSION} install
